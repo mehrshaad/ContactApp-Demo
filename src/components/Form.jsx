@@ -1,7 +1,7 @@
 import {
   UserOutlined,
-    TeamOutlined,
-    PlusOutlined,
+  TeamOutlined,
+  PlusOutlined,
   UndoOutlined,
   MailOutlined,
   PhoneOutlined,
@@ -10,7 +10,6 @@ import { Input, Row, Col, Form, Button } from "antd";
 
 function FormContact({ ...props }) {
   const [form] = Form.useForm();
-
   const onReset = () => {
     form.resetFields();
   };
@@ -33,7 +32,8 @@ function FormContact({ ...props }) {
             rules={[
               {
                 required: true,
-                message: "Please input first name!",
+                type: "string",
+                message: "Please input a valid first name!",
               },
             ]}
           >
@@ -47,7 +47,8 @@ function FormContact({ ...props }) {
             rules={[
               {
                 required: true,
-                message: "Please input last name!",
+                type: "string",
+                message: "Please input a valid last name!",
               },
             ]}
           >
@@ -61,7 +62,8 @@ function FormContact({ ...props }) {
             rules={[
               {
                 required: true,
-                message: "Please input email!",
+                type: "email",
+                message: "Please input a valid email!",
               },
             ]}
           >
@@ -75,11 +77,18 @@ function FormContact({ ...props }) {
             rules={[
               {
                 required: true,
-                message: "Please input phone number!",
+                type: "string",
+                maxLength: 16,
+                pattern: new RegExp(/^[0-9]*$/),
+                message: "Please input a valid phone number!",
               },
             ]}
           >
-            <Input placeholder="Phone Number" prefix={<PhoneOutlined />} />
+            <Input
+              value={1}
+              placeholder="Phone Number"
+              prefix={<PhoneOutlined />}
+            />
           </Form.Item>
         </Col>
         <Col span={12}>

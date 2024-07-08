@@ -12,7 +12,7 @@ The main goal of this project is to develop a simple contact application using R
 - View all contacts
 
 Feel free to check it out on:\
-*[mehrshaad.github.io/ContactApp](https://mehrshaad.github.io/jetReport/)*
+*[mehrshaad.github.io/ContactApp](https://mehrshaad.github.io/ContactApp/)*
 
 ## Launching the project locally
 

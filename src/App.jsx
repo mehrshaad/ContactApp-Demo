@@ -22,9 +22,10 @@ function App() {
   const onFinish = (values) => {
     setData([...data, values]);
   };
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
   return (
     <>
-      <div className={style.card}>
+      <div className={`${style.card} animate__animated animate__fadeIn`}>
         <Row justify={"center"}>
           <Divider>
             <h2>Add New Contact!</h2>
@@ -32,38 +33,41 @@ function App() {
         </Row>
         <Form onFinish={onFinish} />
       </div>
-      <div className={style.card} style={{ marginTop: "16px" }}>
-        <Row gutter={[16, 16]} justify={"space-between"}>
-          {data.map((item, index) => (
-            <Col span={12} className={style.contacts} key={index}>
-              <Col span={24}>
+      {data.length > 0 && (
+        <div
+          className={`${style.card} animate__animated animate__fadeIn`}
+          style={{ marginTop: "16px" }}
+        >
+          <Row gutter={[0, 10]} justify={"space-between"}>
+            {data.map((item, index) => (
+              <Col
+                key={index}
+                span={12}
+                className={`${style.contacts} animate__animated ${
+                  index % 2 == 0
+                    ? "animate__zoomInLeft"
+                    : "animate__zoomInRight"
+                }`}
+              >
                 <p>
                   Name: <b>{item.name}</b>
                 </p>
-              </Col>
-              <Col span={24}>
                 <p>
                   Family Name: <b>{item.fname}</b>
                 </p>
-              </Col>
-              <Col span={24}>
                 <p>
                   Email: <b>{item.email}</b>
                 </p>
-              </Col>
-              <Col span={24}>
                 <p>
                   Phone Number: <b>{item.phone}</b>
                 </p>
-              </Col>
-              <Col span={24}>
                 <Button
                   type="primary"
                   danger
                   block
                   icon={<DeleteOutlined />}
-                  onClick={() => {
-                    setData(
+                  onClick={async (e) => {
+                    setData((data) =>
                       data.filter((itemSub, indexSub) => indexSub !== index)
                     );
                   }}
@@ -71,10 +75,10 @@ function App() {
                   Delete
                 </Button>
               </Col>
-            </Col>
-          ))}
-        </Row>
-      </div>
+            ))}
+          </Row>
+        </div>
+      )}
     </>
   );
 }
